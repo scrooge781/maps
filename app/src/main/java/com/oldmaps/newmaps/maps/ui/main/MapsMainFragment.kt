@@ -12,10 +12,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.oldmaps.newmaps.maps.R
 
-class MapsMainFragment : Fragment() {
+class MapsMainFragment : Fragment(R.layout.fragment_maps_main) {
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -30,12 +29,6 @@ class MapsMainFragment : Fragment() {
         val sydney = LatLng(50.45466, 30.5238)
         //googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Kiew"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_maps_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
