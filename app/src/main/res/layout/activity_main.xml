@@ -4,7 +4,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,13 +21,12 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:elevation="32dp"
+        app:itemIconPadding="16sp"
         app:headerLayout="@layout/header_navigation_menu"
-        app:itemIconPadding="18dp"
         app:itemIconTint="@color/accent2"
         app:itemTextAppearance="@style/TextAppearance.Subheader"
         app:menu="@menu/main_menu" />
