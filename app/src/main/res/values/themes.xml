@@ -2,9 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.Maps" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/backgroundStatusBar</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/backgroundStatusBar</item>
-        <item name="colorPrimaryDark">@color/backgroundStatusBar</item>
+
+        <item name="colorPrimaryDark">@color/main</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/accent2</item>
@@ -13,5 +14,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!--Расстояние между пунктами меню -->
+        <item name="listPreferredItemHeightSmall">60sp</item>
     </style>
 </resources>
