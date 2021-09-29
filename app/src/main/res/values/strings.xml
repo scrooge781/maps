@@ -3,4 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="google_api_key">AIzaSyCP0pDe-la5HbptSNCn7M7v9zUC8Jcdliw</string>
+
+
+    <!--string menu-->
+    <string name="show_markers_maps_menu">Отображать маркеры</string>
+    <string name="modern_maps_menu">Современные карты</string>
+    <string name="vintage_maps_menu">Старинные карты</string>
+    <string name="markers_maps_menu">Маркеры</string>
+    <string name="settings_maps_menu">Настройки</string>
+
 </resources>

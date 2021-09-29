@@ -9,6 +9,7 @@
 
 
     <color name="background">#E5E5E5</color>
+    <color name="backgroundStatusBar">#2E000000</color>
     <color name="black">#170E0D</color>
     <color name="main">#3F2825</color>
     <color name="accent">#FEC85F</color>

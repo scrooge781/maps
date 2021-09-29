@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_modern_map"
+            android:icon="@drawable/ic_menu_modern_maps"
+            android:title="@string/modern_maps_menu"
+            android:iconTint="@color/accent" />
+        <item
+            android:id="@+id/menu_vintage_map"
+            android:icon="@drawable/ic_menu_vintage_map"
+            android:title="@string/vintage_maps_menu"
+            android:iconTint="@color/accent"/>
+        <item
+            android:id="@+id/menu_marker_map"
+            android:icon="@drawable/ic_menu_marker_map"
+            android:title="@string/markers_maps_menu"
+            android:iconTint="@color/accent"/>
+        <item
+            android:id="@+id/menu_setting"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/settings_maps_menu"
+            android:iconTint="@color/accent"/>
+
+    </group>
+</menu>
