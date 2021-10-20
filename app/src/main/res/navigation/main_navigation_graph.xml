@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsMainFragment"
-        android:name="com.oldmaps.newmaps.maps.ui.main.MapsMainFragment"
+        android:name="com.oldmaps.newmaps.maps.ui.maps.MapsMainFragment"
         android:label="fragment_maps_main"
         tools:layout="@layout/fragment_maps_main" />
 </navigation>

@@ -1,0 +1,73 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "91b79f124a60ccbff2a6dbcf1c12c53a",
+    "entities": [
+      {
+        "tableName": "tiles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`x` INTEGER NOT NULL, `y` INTEGER NOT NULL, `z` INTEGER NOT NULL, `s` INTEGER NOT NULL, `image` BLOB, PRIMARY KEY(`x`, `y`, `z`, `s`))",
+        "fields": [
+          {
+            "fieldPath": "x",
+            "columnName": "x",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "y",
+            "columnName": "y",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "z",
+            "columnName": "z",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "s",
+            "columnName": "s",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "BLOB",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "x",
+            "y",
+            "z",
+            "s"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "IND",
+            "unique": false,
+            "columnNames": [
+              "x",
+              "y",
+              "z",
+              "s"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `IND` ON `${TABLE_NAME}` (`x`, `y`, `z`, `s`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '91b79f124a60ccbff2a6dbcf1c12c53a')"
+    ]
+  }
+}

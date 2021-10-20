@@ -21,11 +21,19 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
+        buildFeatures.dataBinding = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     buildTypes {
@@ -56,7 +64,10 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     // Coroutines Library
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+    def coroutine_version = "1.4.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+
 
     // Retrofit Library
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -69,29 +80,39 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-alpha09"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.0-alpha09"
-    implementation "androidx.navigation:navigation-runtime-ktx:2.4.0-alpha09"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.4.0-alpha10"
+    implementation "androidx.navigation:navigation-ui-ktx:2.4.0-alpha10"
+    implementation "androidx.navigation:navigation-runtime-ktx:2.4.0-alpha10"
 
     // Hilt
-    def hilt_version = '2.33-beta'
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
-    // Hilt ViewModel
-    def hilt_view_models = '1.0.0-alpha03'
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_view_models"
-    kapt "androidx.hilt:hilt-compiler:$hilt_view_models"
+    def android_hilt_version = "1.0.0-alpha03"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$android_hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$android_hilt_version"
 
     //Room
-    def room_version = "2.3.0"
+    def room_version = "2.2.2"
     implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 
     //Google Map
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
+    //Live data
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+
+    /**
+     *  Lifecycle
+     */
+    def lifecycle_version = "2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
 }
