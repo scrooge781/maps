@@ -1,10 +1,12 @@
 package com.oldmaps.newmaps.maps.di
 
 import android.content.Context
+import com.oldmaps.newmaps.maps.data.local.db_marker.MarkerTableDao
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.InfoTableDao
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
-import com.oldmaps.newmaps.maps.repo.CoordTileRepository
+import com.oldmaps.newmaps.maps.repo.CoordinateTileRepository
 import com.oldmaps.newmaps.maps.repo.LocalMapsRepository
+import com.oldmaps.newmaps.maps.repo.MarkerMapRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,8 +32,14 @@ object RepositoryModule {
     fun provideRepoCoordTile(
         @ApplicationContext context: Context,
         tilesTableDao: TilesTableDao
-    ): CoordTileRepository =
-        CoordTileRepository(context, tilesTableDao)
+    ): CoordinateTileRepository =
+        CoordinateTileRepository(context, tilesTableDao)
 
+    @Provides
+    @Singleton
+    fun provideRepoMarkerMap(
+        markerTableDao: MarkerTableDao
+    ): MarkerMapRepository =
+        MarkerMapRepository(markerTableDao)
 
 }

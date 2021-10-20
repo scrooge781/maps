@@ -1,4 +1,4 @@
-package com.oldmaps.newmaps.maps.ui.vintage_map.adapter
+package com.oldmaps.newmaps.maps.ui.main_map.vintage_map.adapter
 
 import android.view.LayoutInflater
 import android.view.View

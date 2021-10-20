@@ -1,6 +1,8 @@
 package com.oldmaps.newmaps.maps.di
 
 import android.content.Context
+import com.oldmaps.newmaps.maps.data.local.db_marker.MarkerDatabase
+import com.oldmaps.newmaps.maps.data.local.db_marker.MarkerTableDao
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.VintageMapDatabase
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.InfoTableDao
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
@@ -16,10 +18,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object LocalModule {
 
+    //Vintage map database
+
     @Singleton
     @Provides
-    fun provideTestDatabase(@ApplicationContext app: Context): VintageMapDatabase =
-        VintageMapDatabase.instance(app)
+    fun provideTestDatabase(@ApplicationContext context: Context): VintageMapDatabase =
+        VintageMapDatabase.instance(context)
 
     @Singleton
     @Provides
@@ -31,4 +35,21 @@ object LocalModule {
     @Provides
     fun provideInfoTableDao(database: VintageMapDatabase): InfoTableDao =
         database.infoTableDao()
+
+
+    //----------------------------------------------------------------------------------------------
+    // Markers database
+
+    @Singleton
+    @Provides
+    fun provideMarkerDatabase(@ApplicationContext context: Context): MarkerDatabase =
+        MarkerDatabase.instance(context)
+
+    @Singleton
+    @Provides
+    fun provideMarkerTableDao(database: MarkerDatabase): MarkerTableDao =
+        database.markerTableDao()
+
+    //----------------------------------------------------------------------------------------------
+
 }

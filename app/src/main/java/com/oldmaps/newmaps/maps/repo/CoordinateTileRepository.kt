@@ -5,8 +5,9 @@ import android.util.Log
 import com.google.android.gms.maps.model.Tile
 import com.google.android.gms.maps.model.TileProvider
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
+import javax.inject.Inject
 
-class CoordTileRepository(
+class CoordinateTileRepository @Inject constructor(
     private val context: Context,
     private val tilesTableDao: TilesTableDao
 ) : TileProvider {

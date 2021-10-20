@@ -6,9 +6,10 @@ import com.oldmaps.newmaps.maps.data.model.model_vintage_map.InfoModel
 import com.oldmaps.newmaps.maps.data.model.model_vintage_map.TilesModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
-class LocalMapsRepository(
+class LocalMapsRepository @Inject constructor(
     private val tilesTableDao: TilesTableDao,
     private val infoTableDao: InfoTableDao
 

@@ -11,5 +11,11 @@
     <string name="vintage_maps_menu">Старинные карты</string>
     <string name="markers_maps_menu">Маркеры</string>
     <string name="settings_maps_menu">Настройки</string>
+    <string name="marker">Маркер</string>
+    <string name="number">№</string>
+    <string name="number_marker">Номер маркера</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
 
 </resources>

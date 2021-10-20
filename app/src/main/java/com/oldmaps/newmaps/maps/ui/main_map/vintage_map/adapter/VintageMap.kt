@@ -1,6 +1,4 @@
-package com.oldmaps.newmaps.maps.ui.vintage_map.adapter
-
-import android.widget.ImageView
+package com.oldmaps.newmaps.maps.ui.main_map.vintage_map.adapter
 
 data class VintageMapModel(
     var imageSmallVintageMap: Int? = null,

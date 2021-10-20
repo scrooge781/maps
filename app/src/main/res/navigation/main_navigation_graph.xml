@@ -16,7 +16,30 @@
     </fragment>
     <fragment
         android:id="@+id/mapsMainFragment"
-        android:name="com.oldmaps.newmaps.maps.ui.maps.MapsMainFragment"
+        android:name="com.oldmaps.newmaps.maps.ui.main_map.MapsMainFragment"
         android:label="fragment_maps_main"
-        tools:layout="@layout/fragment_maps_main" />
+        tools:layout="@layout/fragment_maps_main" >
+        <action
+            android:id="@+id/action_mapsMainFragment_to_markerBottomSheet"
+            app:destination="@id/markerBottomSheet" />
+        <action
+            android:id="@+id/action_mapsMainFragment_to_vintageMapBottomSheet"
+            app:destination="@id/vintageMapBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/markerBottomSheet"
+        android:name="com.oldmaps.newmaps.maps.ui.main_map.marker.MarkerBottomSheet"
+        android:label="MarkerBottomSheet" >
+        <action
+            android:id="@+id/action_markerBottomSheet_to_mapsMainFragment"
+            app:destination="@id/mapsMainFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/vintageMapBottomSheet"
+        android:name="com.oldmaps.newmaps.maps.ui.main_map.vintage_map.VintageMapBottomSheet"
+        android:label="VintageMapBottomSheet" >
+        <action
+            android:id="@+id/action_vintageMapBottomSheet_to_mapsMainFragment"
+            app:destination="@id/mapsMainFragment" />
+    </dialog>
 </navigation>
