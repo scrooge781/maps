@@ -3,29 +3,23 @@ package com.oldmaps.newmaps.maps.ui.maps
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.databinding.FragmentMapsMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class MapsMainFragment : Fragment(R.layout.fragment_maps_main) {
 
-    private val detailViewModel: MapsMainViewModel by viewModels()
+    private val viewModel: MapsMainViewModel by viewModels()
     private lateinit var binding: FragmentMapsMainBinding
+
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -37,16 +31,26 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main) {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
+
+        viewModel.getDatabaseAll()
         val sydney = LatLng(50.45466, 30.5238)
         //googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Kiew"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
 
+
+        viewModel.getTileCoord()
+
+        viewModel.tileProvider.observe(viewLifecycleOwner, { tile ->
+            googleMap.addTileOverlay(TileOverlayOptions().tileProvider(tile))
+        })
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMapsMainBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -59,7 +63,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main) {
         mapFragment?.getMapAsync(callback)
 
 
-       /* //testing button in room information--------------------------------------------------------
+        /* //testing button in room information--------------------------------------------------------
 
         binding.mapsVintageMap.setOnClickListener {
             detailViewModel.getDatabaseAll()

@@ -18,11 +18,6 @@ class LocalMapsRepository(
             tilesTableDao.queryGetAllData()
         }
 
-    suspend fun getInfoX(x: Int): TilesModel =
-        withContext(Dispatchers.IO) {
-            tilesTableDao.getInfoX(x)
-        }
-
     suspend fun getZoom(): InfoModel =
         withContext(Dispatchers.IO) {
             infoTableDao.getZoom()
