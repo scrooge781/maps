@@ -3,13 +3,16 @@ package com.oldmaps.newmaps.maps.ui.maps
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
+import com.google.android.material.slider.Slider
 
 import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.databinding.FragmentMapsMainBinding
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
+    private var tileOverlayTransparent: TileOverlay? = null
     private val viewModel: MapsMainViewModel by viewModels()
     private lateinit var binding: FragmentMapsMainBinding
 
@@ -37,6 +41,18 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         mapFragment?.getMapAsync(this)
 
         initViewModel()
+
+        // set transparency vintage map
+        binding.sliderTransparency.addOnSliderTouchListener(object :
+            Slider.OnSliderTouchListener {
+            override fun onStartTrackingTouch(slider: Slider) {
+            }
+
+            override fun onStopTrackingTouch(slider: Slider) {
+                tileOverlayTransparent?.transparency = 1 - slider.value / 100
+            }
+
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -51,10 +67,11 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
     }
 
-    private fun initViewModel(){
+    private fun initViewModel() {
         //set tile vintage map by local db
         viewModel.tileProvider.observe(viewLifecycleOwner, { tile ->
-            map.addTileOverlay(TileOverlayOptions().tileProvider(tile))
+            tileOverlayTransparent =
+                map.addTileOverlay(TileOverlayOptions().tileProvider(tile).transparency(0.0f))
             viewModel.setCenterVintageMap()
         })
 
@@ -67,6 +84,15 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                 .build()
 
             map.moveCamera(CameraUpdateFactory.newCameraPosition(centerVintageMap))
+            slideTransparancy(true)
         })
+    }
+
+    private fun slideTransparancy(visible: Boolean) {
+        when (visible) {
+            true -> binding.sliderTransparency.visibility = View.VISIBLE
+            else -> binding.sliderTransparency.visibility = View.GONE
+        }
+
     }
 }

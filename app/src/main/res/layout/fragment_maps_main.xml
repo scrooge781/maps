@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:paddingBottom="48dp">
 
 
     <androidx.fragment.app.FragmentContainerView
@@ -21,21 +23,27 @@
         android:layout_marginLeft="8sp"
         android:layout_marginTop="45sp"
         android:background="@drawable/background_main_icon"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/ic_icon_menu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <ImageButton
         android:id="@+id/maps_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="45sp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/background_main_icon"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/ic_icon_search"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <ImageButton
@@ -43,23 +51,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="60sp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/background_main_icon"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/ic_icon_map"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/sliderTransparency"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/maps_my_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="60sp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/background_main_icon"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/ic_icon_newar_me"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/sliderTransparency"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderTransparency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:value="100.00"
+        android:valueTo="100.0"
+        android:visibility="gone"
+        app:labelBehavior="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:thumbColor="@color/white"
+        app:thumbRadius="22dp"
+        app:thumbStrokeColor="@color/accent2"
+        app:thumbStrokeWidth="3sp"
+        app:trackColorActive="@color/accent2"
+        app:trackColorInactive="@color/grey5"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
