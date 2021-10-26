@@ -14,4 +14,7 @@ interface TilesTableDao {
     @Query("SELECT * FROM tiles WHERE x = :x AND y = :y AND z = :z")
     fun getBlobImage(x: Int, y: Int, z: Int): TilesModel
 
+    @Query("SELECT * FROM tiles WHERE z = :z")
+    suspend fun getCoordByZoom(z: Int): List<TilesModel>
+
 }

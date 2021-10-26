@@ -22,4 +22,9 @@ class LocalMapsRepository(
         withContext(Dispatchers.IO) {
             infoTableDao.getZoom()
         }
+
+    suspend fun getCoordByZoom(zoom: Int): List<TilesModel> =
+        withContext(Dispatchers.IO){
+            tilesTableDao.getCoordByZoom(zoom)
+        }
 }

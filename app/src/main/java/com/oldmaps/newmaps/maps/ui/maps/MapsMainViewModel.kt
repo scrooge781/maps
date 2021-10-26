@@ -2,10 +2,11 @@ package com.oldmaps.newmaps.maps.ui.maps
 
 import androidx.lifecycle.*
 import com.google.android.gms.maps.model.TileProvider
-import com.oldmaps.newmaps.maps.data.model.InfoModel
+import com.oldmaps.newmaps.maps.data.model.CenterVintageMapModel
 import com.oldmaps.newmaps.maps.data.model.TilesModel
 import com.oldmaps.newmaps.maps.repo.CoordTileRepository
 import com.oldmaps.newmaps.maps.repo.LocalMapsRepository
+import com.oldmaps.newmaps.maps.util.Converting
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,8 +20,8 @@ class MapsMainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val getAllInfo: MutableLiveData<List<TilesModel>> = MutableLiveData()
-    val getZoom: MutableLiveData<InfoModel> = MutableLiveData()
     val tileProvider: MutableLiveData<TileProvider> = MutableLiveData()
+    val centerVintageMap: MutableLiveData<CenterVintageMapModel> = MutableLiveData()
 
     fun getDatabaseAll() {
         viewModelScope.launch {
@@ -28,15 +29,19 @@ class MapsMainViewModel @Inject constructor(
         }
     }
 
-    fun getInfoZoom() {
+    fun getTileCoord() {
         viewModelScope.launch {
-            getZoom.postValue(repo.getZoom())
+            tileProvider.postValue(tileRepo)
         }
     }
 
-    fun getTileCoord(){
+    fun setCenterVintageMap() {
         viewModelScope.launch {
-            tileProvider.postValue(tileRepo)
+            val zoomMap = (17 - repo.getZoom().maxzoom).toFloat()
+            val listCoordinateByZoom = repo.getCoordByZoom(repo.getZoom().maxzoom.toInt())
+            val LatLng = Converting.averageCoordinate(listCoordinateByZoom)
+            centerVintageMap.postValue(CenterVintageMapModel(zoomMap, LatLng))
+
         }
     }
 
