@@ -25,6 +25,7 @@
         android:background="@drawable/background_main_icon"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:onClick="openCloseNavigationDrawer"
         android:src="@drawable/ic_icon_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

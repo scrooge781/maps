@@ -32,6 +32,8 @@ class MapsMainViewModel @Inject constructor(
     fun getTileCoord() {
         viewModelScope.launch {
             tileProvider.postValue(tileRepo)
+            setCenterVintageMap()
+
         }
     }
 
