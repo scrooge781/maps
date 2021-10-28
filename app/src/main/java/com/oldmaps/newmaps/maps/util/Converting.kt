@@ -1,7 +1,7 @@
 package com.oldmaps.newmaps.maps.util
 
 import com.google.android.gms.maps.model.LatLng
-import com.oldmaps.newmaps.maps.data.model.TilesModel
+import com.oldmaps.newmaps.maps.data.model.model_vintage_map.TilesModel
 import kotlin.math.*
 
 object Converting {

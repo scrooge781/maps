@@ -2,7 +2,7 @@ package com.oldmaps.newmaps.maps.data.model
 
 import com.google.android.gms.maps.model.LatLng
 
-data class CenterVintageMapModel(
+data class LatLonZoomModel(
 
     var zoom: Float? = null,
     var latlng: LatLng? = null

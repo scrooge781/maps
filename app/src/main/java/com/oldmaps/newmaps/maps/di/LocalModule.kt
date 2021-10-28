@@ -1,11 +1,9 @@
 package com.oldmaps.newmaps.maps.di
 
 import android.content.Context
-import com.oldmaps.newmaps.maps.data.local.AppDatabase
-import com.oldmaps.newmaps.maps.data.local.InfoTableDao
-import com.oldmaps.newmaps.maps.data.local.TilesTableDao
-import com.oldmaps.newmaps.maps.repo.CoordTileRepository
-import com.oldmaps.newmaps.maps.repo.LocalMapsRepository
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.VintageMapDatabase
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.InfoTableDao
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,34 +18,17 @@ object LocalModule {
 
     @Singleton
     @Provides
-    fun provideTestDatabase(@ApplicationContext app: Context): AppDatabase =
-        AppDatabase.instance(app)
+    fun provideTestDatabase(@ApplicationContext app: Context): VintageMapDatabase =
+        VintageMapDatabase.instance(app)
 
     @Singleton
     @Provides
-    fun provideTilesTableDoa(database: AppDatabase): TilesTableDao =
+    fun provideTilesTableDoa(database: VintageMapDatabase): TilesTableDao =
         database.tilesTableDao()
 
 
     @Singleton
     @Provides
-    fun provideInfoTableDao(database: AppDatabase): InfoTableDao =
+    fun provideInfoTableDao(database: VintageMapDatabase): InfoTableDao =
         database.infoTableDao()
-
-    @Provides
-    @Singleton
-    fun provideRepoVintageMaps(
-        tilesTableDao: TilesTableDao,
-        infoTableDao: InfoTableDao
-    ): LocalMapsRepository =
-        LocalMapsRepository(tilesTableDao, infoTableDao)
-
-    @Provides
-    @Singleton
-    fun provideRepoCoordTile(
-        @ApplicationContext context: Context,
-        tilesTableDao: TilesTableDao
-    ): CoordTileRepository =
-        CoordTileRepository(context, tilesTableDao)
-
 }

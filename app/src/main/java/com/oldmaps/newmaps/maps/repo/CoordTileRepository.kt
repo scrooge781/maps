@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.android.gms.maps.model.Tile
 import com.google.android.gms.maps.model.TileProvider
-import com.oldmaps.newmaps.maps.data.local.TilesTableDao
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
 
 class CoordTileRepository(
     private val context: Context,

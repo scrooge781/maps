@@ -2,8 +2,8 @@ package com.oldmaps.newmaps.maps.ui.maps
 
 import androidx.lifecycle.*
 import com.google.android.gms.maps.model.TileProvider
-import com.oldmaps.newmaps.maps.data.model.CenterVintageMapModel
-import com.oldmaps.newmaps.maps.data.model.TilesModel
+import com.oldmaps.newmaps.maps.data.model.LatLonZoomModel
+import com.oldmaps.newmaps.maps.data.model.model_vintage_map.TilesModel
 import com.oldmaps.newmaps.maps.repo.CoordTileRepository
 import com.oldmaps.newmaps.maps.repo.LocalMapsRepository
 import com.oldmaps.newmaps.maps.util.Converting
@@ -21,7 +21,7 @@ class MapsMainViewModel @Inject constructor(
 
     val getAllInfo: MutableLiveData<List<TilesModel>> = MutableLiveData()
     val tileProvider: MutableLiveData<TileProvider> = MutableLiveData()
-    val centerVintageMap: MutableLiveData<CenterVintageMapModel> = MutableLiveData()
+    val centerVintageMap: MutableLiveData<LatLonZoomModel> = MutableLiveData()
 
     fun getDatabaseAll() {
         viewModelScope.launch {
@@ -42,7 +42,7 @@ class MapsMainViewModel @Inject constructor(
             val zoomMap = (17 - repo.getZoom().maxzoom).toFloat()
             val listCoordinateByZoom = repo.getCoordByZoom(repo.getZoom().maxzoom.toInt())
             val LatLng = Converting.averageCoordinate(listCoordinateByZoom)
-            centerVintageMap.postValue(CenterVintageMapModel(zoomMap, LatLng))
+            centerVintageMap.postValue(LatLonZoomModel(zoomMap, LatLng))
 
         }
     }

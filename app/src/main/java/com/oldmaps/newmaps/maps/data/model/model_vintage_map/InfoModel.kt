@@ -1,4 +1,4 @@
-package com.oldmaps.newmaps.maps.data.model
+package com.oldmaps.newmaps.maps.data.model.model_vintage_map
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,9 +1,9 @@
 package com.oldmaps.newmaps.maps.repo
 
-import com.oldmaps.newmaps.maps.data.local.InfoTableDao
-import com.oldmaps.newmaps.maps.data.local.TilesTableDao
-import com.oldmaps.newmaps.maps.data.model.InfoModel
-import com.oldmaps.newmaps.maps.data.model.TilesModel
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.InfoTableDao
+import com.oldmaps.newmaps.maps.data.local.db_vintage_map.TilesTableDao
+import com.oldmaps.newmaps.maps.data.model.model_vintage_map.InfoModel
+import com.oldmaps.newmaps.maps.data.model.model_vintage_map.TilesModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
