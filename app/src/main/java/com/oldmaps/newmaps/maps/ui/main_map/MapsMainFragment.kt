@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -46,7 +47,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                   activity?.finish()
+                    activity?.finish()
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -58,6 +59,14 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMapsMainBinding.inflate(inflater, container, false)
+
+        //Прозрачный фон Status bar
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         return binding.root
     }
 
@@ -88,6 +97,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
         val initStartPoint = LatLng(50.45466, 30.5238)
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(initStartPoint))
+        googleMap.mapType = GoogleMap.MAP_TYPE_NONE
 
         googleMap.setOnMapLongClickListener { latlng ->
             val bundle = Bundle()

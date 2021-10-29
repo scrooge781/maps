@@ -18,7 +18,6 @@
         <!--Расстояние между пунктами меню -->
         <item name="listPreferredItemHeightSmall">60sp</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-
     </style>
 
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">

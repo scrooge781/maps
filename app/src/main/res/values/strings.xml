@@ -18,5 +18,6 @@
     <string name="description">Описание</string>
     <string name="save">Сохранить</string>
     <string name="markers">Маркеры</string>
+    <string name="modern_maps">Современные\nкарты</string>
 
 </resources>

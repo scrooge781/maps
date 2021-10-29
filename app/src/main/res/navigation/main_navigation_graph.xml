@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mapsMainFragment_to_markerMenuFragment2"
             app:destination="@id/menu_marker_map" />
+        <action
+            android:id="@+id/action_mapsMainFragment_to_modernMapFragment"
+            app:destination="@id/menu_modern_map" />
     </fragment>
     <dialog
         android:id="@+id/markerBottomSheet"
@@ -49,6 +52,18 @@
         android:id="@+id/menu_marker_map"
         android:name="com.oldmaps.newmaps.maps.ui.menu.marker.MarkerMenuFragment"
         android:label="fragment_marker_menu"
-        tools:layout="@layout/fragment_marker_menu"
-        />
+        tools:layout="@layout/menu_fragment_markers"
+        >
+        <action
+            android:id="@+id/action_menu_marker_map_to_mapsMainFragment"
+            app:destination="@id/mapsMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_modern_map"
+        android:name="com.oldmaps.newmaps.maps.ui.menu.modern_map.ModernMapFragment"
+        android:label="ModernMapFragment" >
+        <action
+            android:id="@+id/action_menu_modern_map_to_mapsMainFragment"
+            app:destination="@id/mapsMainFragment" />
+    </fragment>
 </navigation>

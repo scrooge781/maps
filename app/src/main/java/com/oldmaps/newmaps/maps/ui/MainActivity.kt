@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.common.util.CollectionUtils.setOf
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.oldmaps.newmaps.maps.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,11 +40,6 @@ class MainActivity : AppCompatActivity() {
         //убирает ActionBar
         supportActionBar?.hide()
 
-        //Прозрачный фон Status bar
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.menu_modern_map, R.id.menu_vintage_map, R.id.menu_marker_map, R.id.menu_setting

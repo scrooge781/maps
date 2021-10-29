@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/backModernMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewModernMapMenu"
+        style="@style/TextAppearance.30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/modern_maps"
+        app:layout_constraintStart_toStartOf="@+id/backModernMap"
+        app:layout_constraintTop_toBottomOf="@+id/backModernMap" />
+
+    <TextView
+        android:id="@+id/textViewMapName"
+        style="@style/TextAppearance.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Карта"
+        app:layout_constraintStart_toStartOf="@+id/textViewModernMapMenu"
+        app:layout_constraintTop_toBottomOf="@+id/textViewModernMapMenu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerModernMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMapName"
+        tools:listitem="@layout/item_list_modern_map" />
+
+    <TextView
+        android:id="@+id/textViewTypeMapName"
+        style="@style/TextAppearance.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Тип карты"
+        app:layout_constraintStart_toStartOf="@+id/textViewMapName"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerModernMap" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerModerMapType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        tools:listitem="@layout/item_list_modern_map_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTypeMapName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

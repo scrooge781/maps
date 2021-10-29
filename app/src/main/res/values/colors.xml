@@ -18,5 +18,6 @@
     <color name="grey">#5C5655</color>
     <color name="grey_edit_text">#838383</color>
     <color name="grey5">#E0E0E0</color>
+    <color name="grey_disable_moder_map">#C4C4C4</color>
 
 </resources>

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/background_main_icon.xml" value="0.3828125" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/disable_element_modern_map.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/ellipse.xml" value="0.24177631578947367" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/enable_element_modern_map.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/line.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/rectangle_1.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/rounded_corners_shape.xml" value="0.24177631578947367" />
@@ -16,7 +18,11 @@
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/fragment_marker_menu.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/header_navigation_menu.xml" value="0.11376858435681965" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/item_list_markers.xml" value="0.22" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/item_list_modern_map.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/item_list_modern_map_type.xml" value="0.2293159609120521" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/item_list_vitage_map.xml" value="0.33" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/menu_fragment_markers.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/menu_fragment_modern_map.xml" value="0.2" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/menu/main_menu.xml" value="0.2293159609120521" />
       </map>
     </option>
