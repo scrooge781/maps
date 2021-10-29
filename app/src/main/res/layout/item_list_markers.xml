@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="24dp"
+    android:paddingTop="16dp">
+
+    <ImageView
+        android:id="@+id/imageViewMarkers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_icon_marker" />
+
+    <TextView
+        android:id="@+id/textImageViewMarkers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewMarkers"
+        app:layout_constraintStart_toStartOf="@+id/imageViewMarkers"
+        app:layout_constraintTop_toTopOf="@+id/imageViewMarkers" />
+
+    <TextView
+        android:id="@+id/textTitleMarkers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        style="@style/TextAppearance.Title"
+        app:layout_constraintStart_toEndOf="@+id/imageViewMarkers"
+        app:layout_constraintTop_toTopOf="@+id/imageViewMarkers" />
+
+    <TextView
+        android:id="@+id/textDescMarkers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        style="@style/TextAppearance.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewMarkers"
+        app:layout_constraintStart_toEndOf="@+id/imageViewMarkers" />
+</androidx.constraintlayout.widget.ConstraintLayout>

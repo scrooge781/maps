@@ -1,6 +1,7 @@
 package com.oldmaps.newmaps.maps.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.oldmaps.newmaps.maps.data.local.db_marker.MarkerDatabase
 import com.oldmaps.newmaps.maps.data.local.db_marker.MarkerTableDao
 import com.oldmaps.newmaps.maps.data.local.db_vintage_map.VintageMapDatabase
@@ -51,5 +52,11 @@ object LocalModule {
         database.markerTableDao()
 
     //----------------------------------------------------------------------------------------------
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("preferences_name", Context.MODE_PRIVATE)
+    }
 
 }

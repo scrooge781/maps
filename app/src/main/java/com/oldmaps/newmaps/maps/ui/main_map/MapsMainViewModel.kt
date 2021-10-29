@@ -44,6 +44,7 @@ class MapsMainViewModel @Inject constructor(
 
 
     val markerSave: MutableLiveData<MarkerModel> = MutableLiveData()
+    val allMarker: MutableLiveData<List<MarkerModel>> = MutableLiveData()
 
     fun saveMarker(marker: MarkerModel) {
         viewModelScope.launch {
@@ -54,6 +55,12 @@ class MapsMainViewModel @Inject constructor(
     fun getMarker(id: Long) {
         viewModelScope.launch {
             markerSave.postValue(markerRepo.getMarkerById(id))
+        }
+    }
+
+    fun getAllMarker(){
+        viewModelScope.launch {
+            allMarker.postValue(markerRepo.getAllMarker())
         }
     }
 

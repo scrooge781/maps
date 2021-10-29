@@ -25,8 +25,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconPadding="16sp"
         app:headerLayout="@layout/header_navigation_menu"
+        app:itemIconPadding="16sp"
         app:itemIconTint="@color/accent2"
         app:itemTextAppearance="@style/TextAppearance.Subheader"
         app:menu="@menu/main_menu" />
