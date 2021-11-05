@@ -1,5 +1,6 @@
 package com.oldmaps.newmaps.maps.ui.menu.modern_map
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,11 +18,14 @@ import com.oldmaps.newmaps.maps.ui.menu.modern_map.adapter.ModerMapTypeAdapter
 import com.oldmaps.newmaps.maps.ui.menu.modern_map.adapter.ModernMapAdapter
 import com.oldmaps.newmaps.maps.ui.menu.modern_map.adapter.ModernMapModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ModernMapFragment : Fragment(R.layout.menu_fragment_modern_map) {
 
     private lateinit var binding: MenuFragmentModernMapBinding
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateView(
@@ -29,9 +33,6 @@ class ModernMapFragment : Fragment(R.layout.menu_fragment_modern_map) {
         savedInstanceState: Bundle?
     ): View? {
         binding = MenuFragmentModernMapBinding.inflate(inflater, container, false)
-
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        requireActivity().window.statusBarColor = Color.BLACK
 
         // Inflate the layout for this fragment
         return binding.root
@@ -44,7 +45,7 @@ class ModernMapFragment : Fragment(R.layout.menu_fragment_modern_map) {
         initModernMap()
         initModernMapType()
         binding.backModernMap.setOnClickListener {
-            findNavController().navigate(R.id.action_menu_modern_map_to_mapsMainFragment)
+            findNavController().popBackStack()
         }
     }
 
@@ -67,13 +68,14 @@ class ModernMapFragment : Fragment(R.layout.menu_fragment_modern_map) {
     }
 
     private fun initModernMapType(){
-        val adapter = ModerMapTypeAdapter()
+        val adapter = ModerMapTypeAdapter(sharedPreferences)
         var list: ArrayList<ModernMapModel> = ArrayList()
 
-        list.add(ModernMapModel(R.drawable.ic_default, "Местность", true))
-        list.add(ModernMapModel(R.drawable.ic_satellite, "Спутник", false))
-        list.add(ModernMapModel(R.drawable.ic_terrain, "Гибрид", false))
-        list.add(ModernMapModel(R.drawable.disable_element_modern_map, "Без карты", false))
+        val type_map = sharedPreferences.getInt("type_map", 0)
+        list.add(ModernMapModel(R.drawable.ic_default, "Местность", type_map == 0))
+        list.add(ModernMapModel(R.drawable.ic_satellite, "Спутник", type_map == 1))
+        list.add(ModernMapModel(R.drawable.ic_terrain, "Гибрид", type_map == 2))
+        list.add(ModernMapModel(R.drawable.disable_element_modern_map, "Без карты", type_map == 3))
 
         adapter.addItems(list)
         binding.recyclerModerMapType.adapter = adapter

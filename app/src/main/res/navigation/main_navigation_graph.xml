@@ -52,18 +52,9 @@
         android:id="@+id/menu_marker_map"
         android:name="com.oldmaps.newmaps.maps.ui.menu.marker.MarkerMenuFragment"
         android:label="fragment_marker_menu"
-        tools:layout="@layout/menu_fragment_markers"
-        >
-        <action
-            android:id="@+id/action_menu_marker_map_to_mapsMainFragment"
-            app:destination="@id/mapsMainFragment" />
-    </fragment>
+        tools:layout="@layout/menu_fragment_markers"/>
     <fragment
         android:id="@+id/menu_modern_map"
         android:name="com.oldmaps.newmaps.maps.ui.menu.modern_map.ModernMapFragment"
-        android:label="ModernMapFragment" >
-        <action
-            android:id="@+id/action_menu_modern_map_to_mapsMainFragment"
-            app:destination="@id/mapsMainFragment" />
-    </fragment>
+        android:label="ModernMapFragment" />
 </navigation>

@@ -59,14 +59,6 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMapsMainBinding.inflate(inflater, container, false)
-
-        //Прозрачный фон Status bar
-        requireActivity().window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
-
-        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         return binding.root
     }
 
@@ -97,7 +89,6 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
         val initStartPoint = LatLng(50.45466, 30.5238)
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(initStartPoint))
-        googleMap.mapType = GoogleMap.MAP_TYPE_NONE
 
         googleMap.setOnMapLongClickListener { latlng ->
             val bundle = Bundle()
@@ -111,6 +102,10 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
         // get tile vintage maps by local db
         viewModel.getTileCoordinate()
+
+        //get map type
+        viewModel.getMapType()
+
 
     }
 
@@ -137,6 +132,11 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
             for (marker in listMarker) {
                 setMarkerOnMap(marker)
             }
+        })
+
+        //set map type
+        viewModel.typeMap.observe(viewLifecycleOwner, { mapType ->
+            map.mapType = mapType
         })
     }
 

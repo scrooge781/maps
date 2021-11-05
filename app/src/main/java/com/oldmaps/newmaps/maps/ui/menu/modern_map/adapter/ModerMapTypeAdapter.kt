@@ -15,9 +15,12 @@ import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.util.BaseRecyclerViewAdapter
 import kotlinx.android.synthetic.main.item_list_modern_map_type.view.*
 import android.content.ClipData.Item
+import android.content.SharedPreferences
+import javax.inject.Inject
 
 
-class ModerMapTypeAdapter : BaseRecyclerViewAdapter<ModernMapModel>() {
+class ModerMapTypeAdapter(val sharedPreferences: SharedPreferences) :
+    BaseRecyclerViewAdapter<ModernMapModel>() {
 
     private var selectedPos = -1
 
@@ -34,17 +37,20 @@ class ModerMapTypeAdapter : BaseRecyclerViewAdapter<ModernMapModel>() {
         myHolder?.setUpView(modernMap = getItem(position))
         myHolder?.item?.setOnClickListener {
             selectedPos = position
+            getItem(0)?.focusable = false
+            getItem(1)?.focusable = false
+            getItem(2)?.focusable = false
+            getItem(3)?.focusable = false
             notifyDataSetChanged()
-        }
 
-        if(selectedPos == position){
-            myHolder?.focusable?.setBackgroundResource(R.drawable.enable_element_modern_map)
-            myHolder?.title?.setTextColor(Color.parseColor("#FFAF38"))
-        } else {
-            myHolder?.focusable?.setBackgroundResource(R.drawable.disable_element_modern_map)
-            myHolder?.title?.setTextColor(Color.parseColor("#FF170E0D"))
-        }
 
+            when (position) {
+                0 -> sharedPreferences.edit().putInt("type_map", 0).apply()
+                1 -> sharedPreferences.edit().putInt("type_map", 1).apply()
+                2 -> sharedPreferences.edit().putInt("type_map", 2).apply()
+                3 -> sharedPreferences.edit().putInt("type_map", 3).apply()
+            }
+        }
 
     }
 
@@ -56,16 +62,17 @@ class ModerMapTypeAdapter : BaseRecyclerViewAdapter<ModernMapModel>() {
         val title: TextView = view.textModerMapType
         val focusable: FrameLayout = view.grameLayoutModernMapType
 
-
         fun setUpView(modernMap: ModernMapModel?) {
             image.setImageResource(modernMap?.image!!)
             title.text = modernMap.title
 
-            /*  if(modernMap.focusable){
-                  focusable.setBackgroundResource(R.drawable.enable_element_modern_map)
-                  title.setTextColor(Color.parseColor("#FFAF38"))
-              }*/
-
+            if (selectedPos == position || modernMap.focusable) {
+                focusable.setBackgroundResource(R.drawable.enable_element_modern_map)
+                title.setTextColor(Color.parseColor("#FFAF38"))
+            } else {
+                focusable.setBackgroundResource(R.drawable.disable_element_modern_map)
+                title.setTextColor(Color.parseColor("#FF170E0D"))
+            }
         }
     }
 

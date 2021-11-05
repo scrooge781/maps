@@ -30,13 +30,10 @@ class MarkerMenuFragment : Fragment(R.layout.menu_fragment_markers) {
     ): View {
         binding = MenuFragmentMarkersBinding.inflate(inflater, container, false)
 
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        requireActivity().window.statusBarColor = Color.BLACK
-
         viewModel.getAllMaker()
         initViewModelObservle()
         binding.backMarkers.setOnClickListener {
-            findNavController().navigate(R.id.action_markerBottomSheet_to_mapsMainFragment)
+            findNavController().popBackStack()
         }
 
         return binding.root
