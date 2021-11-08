@@ -19,5 +19,6 @@
     <string name="save">Сохранить</string>
     <string name="markers">Маркеры</string>
     <string name="modern_maps">Современные\nкарты</string>
+    <string name="empty_marker_list">Список маркеров пуст.\nМаркер можно добавить\nдолгим нажатием на карту.</string>
 
 </resources>

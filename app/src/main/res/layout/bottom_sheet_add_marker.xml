@@ -1,107 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="com.google.android.material.bottomed.BottomSheetBehavior">
 
-    <ImageView
-        android:id="@+id/imageViewRectangle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rectangle_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewMarker"
-        style="@style/TextAppearance.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/marker"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewRectangle"
-        app:layout_constraintStart_toStartOf="@+id/imageViewRectangle"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRectangle" />
-
-    <ImageView
-        android:id="@+id/imageViewLine"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/line"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMarker"
-        tools:layout_editor_absoluteX="-3dp" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextNumberMarker"
-        style="@style/TextAppearance.Body2Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/ellipse"
-        android:gravity="center"
-        android:hint="@string/number"
-        android:inputType="number"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLine" />
+        <ImageView
+            android:id="@+id/imageViewRectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rectangle_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewNumberMarker"
-        style="@style/TextAppearance.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/number_marker"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumberMarker"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumberMarker"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberMarker" />
+        <TextView
+            android:id="@+id/textViewMarker"
+            style="@style/TextAppearance.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/marker"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewRectangle"
+            app:layout_constraintStart_toStartOf="@+id/imageViewRectangle"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRectangle" />
 
-    <EditText
-        android:id="@+id/editTextTitleMarker"
-        style="@style/TextAppearance.Body2Menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/title"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberMarker" />
+        <ImageView
+            android:id="@+id/imageViewLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/line"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMarker"
+            tools:layout_editor_absoluteX="-3dp" />
 
-    <EditText
-        android:id="@+id/editTextDescriptionMarker"
-        style="@style/TextAppearance.Body2Menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/description"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitleMarker" />
+        <EditText
+            android:id="@+id/editTextNumberMarker"
+            style="@style/TextAppearance.Body2Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/ellipse"
+            android:gravity="center"
+            android:hint="@string/number"
+            android:inputType="number"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewLine" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSaveMarker"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/accent2"
-        android:text="@string/save"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionMarker" />
+        <TextView
+            android:id="@+id/textViewNumberMarker"
+            style="@style/TextAppearance.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/number_marker"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberMarker"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumberMarker"
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberMarker" />
 
+        <EditText
+            android:id="@+id/editTextTitleMarker"
+            style="@style/TextAppearance.Body2Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/title"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberMarker" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/editTextDescriptionMarker"
+            style="@style/TextAppearance.Body2Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/description"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitleMarker" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSaveMarker"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/accent2"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionMarker" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

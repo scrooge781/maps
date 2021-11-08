@@ -23,7 +23,6 @@ class MarkerMenuFragment : Fragment(R.layout.menu_fragment_markers) {
     private lateinit var binding: MenuFragmentMarkersBinding
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,9 +46,14 @@ class MarkerMenuFragment : Fragment(R.layout.menu_fragment_markers) {
                 list.add(marker)
             }
             adapter.addItems(list)
-            binding.recyclerViewMarkers.adapter = adapter
-            binding.recyclerViewMarkers.layoutManager =
-                LinearLayoutManager(activity?.applicationContext)
+            if (list.isEmpty()) {
+                binding.textViewEmptyList.visibility = View.VISIBLE
+            } else {
+                binding.recyclerViewMarkers.visibility = View.VISIBLE
+                binding.recyclerViewMarkers.adapter = adapter
+                binding.recyclerViewMarkers.layoutManager =
+                    LinearLayoutManager(activity?.applicationContext)
+            }
         })
     }
 
