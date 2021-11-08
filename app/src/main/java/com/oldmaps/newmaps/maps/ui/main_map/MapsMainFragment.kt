@@ -89,6 +89,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
         val initStartPoint = LatLng(50.45466, 30.5238)
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(initStartPoint))
+        googleMap.uiSettings.isRotateGesturesEnabled = false
 
 
         googleMap.setOnMapLongClickListener { latlng ->
