@@ -37,6 +37,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
     private var tileOverlayTransparent: TileOverlay? = null
     private val viewModel: MapsMainViewModel by viewModels()
     private lateinit var binding: FragmentMapsMainBinding
+    private var markerId: Int = 0
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -81,6 +82,9 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
             ?.observe(viewLifecycleOwner, { markerData ->
                 viewModel.saveMarker(markerData)
                 setMarkerOnMap(markerData)
+
+                //update info markers
+                viewModel.getAllMarker()
             })
     }
 
@@ -96,6 +100,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
             val bundle = Bundle()
             bundle.putDouble("marker_lat", latlng.latitude)
             bundle.putDouble("marker_lon", latlng.longitude)
+            bundle.putInt("marker_id", markerId)
             findNavController().navigate(R.id.action_mapsMainFragment_to_markerBottomSheet, bundle)
         }
 
@@ -132,8 +137,12 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         })
 
         viewModel.allMarker.observe(viewLifecycleOwner, { listMarker ->
-            for (marker in listMarker) {
-                setMarkerOnMap(marker)
+
+            if (!listMarker.isEmpty()) {
+                markerId = listMarker.get(listMarker.size - 1).id
+                for (marker in listMarker) {
+                    setMarkerOnMap(marker)
+                }
             }
         })
 
@@ -182,7 +191,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                     bitmapDescriptorFromVector(
                         context!!,
                         R.drawable.ic_icon_marker,
-                        marker.number!!
+                        marker.id.toString()
                     )
                 )
         )

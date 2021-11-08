@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.data.model.MarkerModel
 import com.oldmaps.newmaps.maps.util.BaseRecyclerViewAdapter
+import kotlinx.android.synthetic.main.bottom_sheet_add_marker.view.*
 import kotlinx.android.synthetic.main.item_list_markers.view.*
 
 class MarkerMenuAdapter : BaseRecyclerViewAdapter<MarkerModel>() {
@@ -29,7 +30,7 @@ class MarkerMenuAdapter : BaseRecyclerViewAdapter<MarkerModel>() {
 
 
         fun setUpView(markerModel: MarkerModel?) {
-            number.text = markerModel?.number
+            number.text = markerModel?.id.toString()
             title.text = markerModel?.title
             desc.text = markerModel?.description
 

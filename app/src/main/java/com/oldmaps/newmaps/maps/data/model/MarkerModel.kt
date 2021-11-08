@@ -8,13 +8,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "marker")
 data class MarkerModel(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
     var lat: Double? = null,
     var lon: Double? = null,
-    var number: String? = null,
     var title: String? = null,
     var description: String? = null
 
-): Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-}
+): Parcelable

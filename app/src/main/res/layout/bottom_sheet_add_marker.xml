@@ -40,8 +40,8 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewMarker"
             tools:layout_editor_absoluteX="-3dp" />
 
-        <EditText
-            android:id="@+id/editTextNumberMarker"
+        <TextView
+            android:id="@+id/idTextNumberMarker"
             style="@style/TextAppearance.Body2Menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +49,6 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/ellipse"
             android:gravity="center"
-            android:hint="@string/number"
-            android:inputType="number"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,9 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/number_marker"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberMarker"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumberMarker"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumberMarker" />
+            app:layout_constraintBottom_toBottomOf="@+id/idTextNumberMarker"
+            app:layout_constraintStart_toEndOf="@+id/idTextNumberMarker"
+            app:layout_constraintTop_toTopOf="@+id/idTextNumberMarker" />
 
         <EditText
             android:id="@+id/editTextTitleMarker"
@@ -79,7 +77,7 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumberMarker" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewNumberMarker" />
 
         <EditText
             android:id="@+id/editTextDescriptionMarker"

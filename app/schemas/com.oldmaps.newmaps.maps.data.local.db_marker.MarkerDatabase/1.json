@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2fc952632239137ef7b6f80ca3d3ffb1",
+    "identityHash": "1c10e56f7b12cce8d17e0f5af17aada4",
     "entities": [
       {
         "tableName": "marker",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lat` REAL, `lon` REAL, `number` TEXT, `title` TEXT, `description` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `lat` REAL, `lon` REAL, `title` TEXT, `description` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,12 +24,6 @@
             "fieldPath": "lon",
             "columnName": "lon",
             "affinity": "REAL",
-            "notNull": false
-          },
-          {
-            "fieldPath": "number",
-            "columnName": "number",
-            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -58,7 +52,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2fc952632239137ef7b6f80ca3d3ffb1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1c10e56f7b12cce8d17e0f5af17aada4')"
     ]
   }
 }

@@ -17,10 +17,9 @@
 
         <!--Расстояние между пунктами меню -->
         <item name="listPreferredItemHeightSmall">60sp</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
     </style>
 
-    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+    <style name="AppRoundedBottomSheetDialogThemeNoFloating" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize|stateVisible</item>
         <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
