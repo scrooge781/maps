@@ -90,6 +90,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         val initStartPoint = LatLng(50.45466, 30.5238)
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(initStartPoint))
 
+
         googleMap.setOnMapLongClickListener { latlng ->
             val bundle = Bundle()
             bundle.putDouble("marker_lat", latlng.latitude)
@@ -121,9 +122,10 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         viewModel.centerVintageMap.observe(viewLifecycleOwner, {
             val centerVintageMap: CameraPosition = CameraPosition.Builder()
                 .target(it.latlng!!)
-                .zoom(it.zoom!!)
+                .zoom(it.maxZoomMap!!)
                 .build()
 
+            map.setMaxZoomPreference(it.minZoomMap!!)
             map.moveCamera(CameraUpdateFactory.newCameraPosition(centerVintageMap))
             slideTransparently(true)
         })
@@ -138,6 +140,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         viewModel.typeMap.observe(viewLifecycleOwner, { mapType ->
             map.mapType = mapType
         })
+
     }
 
     private fun initShowMarkers() {

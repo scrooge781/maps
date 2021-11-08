@@ -37,10 +37,11 @@ class MapsMainViewModel @Inject constructor(
 
     private fun setCenterVintageMap() {
         viewModelScope.launch {
-            val zoomMap = (17 - repo.getZoom().maxzoom).toFloat()
+            val maxZoomMap = (17 - repo.getZoom().maxzoom).toFloat()
+            val minZoomMap = (17 - repo.getZoom().minzoom).toFloat()
             val listCoordinateByZoom = repo.getCoordByZoom(repo.getZoom().maxzoom.toInt())
             val LatLng = Converting.averageCoordinate(listCoordinateByZoom)
-            centerVintageMap.postValue(LatLonZoomModel(zoomMap, LatLng))
+            centerVintageMap.postValue(LatLonZoomModel(maxZoomMap, minZoomMap, LatLng))
 
         }
     }
