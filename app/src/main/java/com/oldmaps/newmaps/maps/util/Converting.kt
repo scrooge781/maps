@@ -1,17 +1,16 @@
 package com.oldmaps.newmaps.maps.util
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.data.model.model_vintage_map.TilesModel
-import kotlin.math.*
+import kotlin.math.atan
+import kotlin.math.pow
+import kotlin.math.sinh
+
 
 object Converting {
 
@@ -46,29 +45,38 @@ object Converting {
         number: String
     ): BitmapDescriptor? {
         return ContextCompat.getDrawable(context, vectorResId)?.run {
-            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+
             val bitmap =
                 Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
 
 
             val canvas = Canvas(bitmap)
-            val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-            paint.color = context.resources.getColor(R.color.black)
-            paint.textSize = 20f
-            paint.textAlign = Paint.Align.CENTER
 
-            // draw text to the Canvas center
-            // draw text to the Canvas center
-            val boundsText = Rect()
-            paint.getTextBounds(number, 0, number.length, boundsText)
-            val x: Int = (bitmap.width - boundsText.width()) / 2
-            val y: Int = (bitmap.height + boundsText.height()) / 2
-
-            canvas.drawText(number, x.toFloat(), y.toFloat(), paint)
-
+            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
             draw(canvas)
+
+            // new antialised Paint
+            val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+            paint.color = Color.BLACK
+            paint.textSize = 55F
+
+            drawCenter(canvas, paint, number)
+
             BitmapDescriptorFactory.fromBitmap(bitmap)
         }
+    }
+
+    private val r = Rect()
+
+    private fun drawCenter(canvas: Canvas, paint: Paint, text: String) {
+        canvas.getClipBounds(r)
+        val cHeight = r.height()
+        val cWidth = r.width()
+        paint.textAlign = Paint.Align.LEFT
+        paint.getTextBounds(text, 0, text.length, r)
+        val x = cWidth / 2f - r.height() / 2.5f
+        val y = cHeight / 2f
+        canvas.drawText(text, x, y, paint)
     }
 
 }

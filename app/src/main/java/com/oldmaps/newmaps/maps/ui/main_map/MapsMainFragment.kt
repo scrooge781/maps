@@ -1,20 +1,13 @@
 package com.oldmaps.newmaps.maps.ui.main_map
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.*
@@ -183,6 +176,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
     private fun setMarkerOnMap(marker: MarkerModel) {
         val latlng = LatLng(marker.lat!!, marker.lon!!)
+
         map.addMarker(
             MarkerOptions()
                 .position(latlng)
