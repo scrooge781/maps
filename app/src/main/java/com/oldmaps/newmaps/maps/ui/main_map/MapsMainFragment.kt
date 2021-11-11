@@ -176,7 +176,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
     private fun setMarkerOnMap(marker: MarkerModel) {
         val latlng = LatLng(marker.lat!!, marker.lon!!)
-
+        val scale = resources.displayMetrics.density
         map.addMarker(
             MarkerOptions()
                 .position(latlng)
@@ -185,7 +185,8 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                     bitmapDescriptorFromVector(
                         context!!,
                         R.drawable.ic_icon_marker,
-                        marker.id.toString()
+                        marker.id.toString(),
+                        scale
                     )
                 )
         )

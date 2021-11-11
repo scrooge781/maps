@@ -42,7 +42,8 @@ object Converting {
     fun bitmapDescriptorFromVector(
         context: Context,
         vectorResId: Int,
-        number: String
+        number: String,
+        scale: Float
     ): BitmapDescriptor? {
         return ContextCompat.getDrawable(context, vectorResId)?.run {
 
@@ -58,7 +59,7 @@ object Converting {
             // new antialised Paint
             val paint = Paint(Paint.ANTI_ALIAS_FLAG)
             paint.color = Color.BLACK
-            paint.textSize = 55F
+            paint.textSize = (17f * scale)
 
             drawCenter(canvas, paint, number)
 
@@ -72,9 +73,9 @@ object Converting {
         canvas.getClipBounds(r)
         val cHeight = r.height()
         val cWidth = r.width()
-        paint.textAlign = Paint.Align.LEFT
+        paint.textAlign = Paint.Align.CENTER
         paint.getTextBounds(text, 0, text.length, r)
-        val x = cWidth / 2f - r.height() / 2.5f
+        val x = cWidth / 2f - r.height() / 10
         val y = cHeight / 2f
         canvas.drawText(text, x, y, paint)
     }
