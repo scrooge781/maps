@@ -8,6 +8,6 @@ import com.oldmaps.newmaps.maps.data.model.model_vintage_map.InfoModel
 interface InfoTableDao {
 
     @Query("SELECT * FROM info")
-    suspend fun getZoom(): InfoModel
+    fun getZoom(): InfoModel
 
 }

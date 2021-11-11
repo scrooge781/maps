@@ -21,7 +21,6 @@ class MapsMainViewModel @Inject constructor(
     private val tileRepo: CoordinateTileRepository,
     private val markerRepo: MarkerMapRepository,
     private val sharedPreferences: SharedPreferences
-
 ) : ViewModel() {
 
     val tileProvider: MutableLiveData<TileProvider> = MutableLiveData()

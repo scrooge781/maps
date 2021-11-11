@@ -131,7 +131,7 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                 .zoom(it.maxZoomMap!!)
                 .build()
 
-            map.setMaxZoomPreference(it.minZoomMap!!)
+            //map.setMaxZoomPreference(it.minZoomMap!!)
             map.moveCamera(CameraUpdateFactory.newCameraPosition(centerVintageMap))
             slideTransparently(true)
         })
