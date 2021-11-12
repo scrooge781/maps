@@ -1,7 +1,6 @@
 package com.oldmaps.newmaps.maps.ui.main_map.marker
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.data.model.MarkerModel
+import com.oldmaps.newmaps.maps.util.KeyboardUtil
 import kotlinx.android.synthetic.main.bottom_sheet_add_marker.view.*
 
 class MarkerBottomSheet : BottomSheetDialogFragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // set the window no floating style
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.AppRoundedBottomSheetDialogThemeNoFloating)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +20,7 @@ class MarkerBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.bottom_sheet_add_marker, container, false)
+        activity?.let { KeyboardUtil(it, view) }
 
         val id = arguments?.getInt("marker_id")
         val lat = arguments?.getDouble("marker_lat")
