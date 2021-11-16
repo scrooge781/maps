@@ -81,5 +81,13 @@ class MapsMainViewModel @Inject constructor(
         }
     }
 
+
+    val showMarker: MutableLiveData<Boolean> = MutableLiveData()
+    fun showMarkerOnMaps(visibility: Boolean){
+        viewModelScope.launch {
+            showMarker.postValue(visibility)
+        }
+    }
+
 }
 
