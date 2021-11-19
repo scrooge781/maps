@@ -1,38 +1,37 @@
 package com.oldmaps.newmaps.maps.ui.main_map
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.slider.Slider
-
 import com.oldmaps.newmaps.maps.R
 import com.oldmaps.newmaps.maps.data.model.MarkerModel
 import com.oldmaps.newmaps.maps.databinding.FragmentMapsMainBinding
+import com.oldmaps.newmaps.maps.services.GpsService
 import com.oldmaps.newmaps.maps.ui.main_map.marker.MarkerBottomSheet
 import com.oldmaps.newmaps.maps.util.Converting.bitmapDescriptorFromVector
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
+import com.oldmaps.newmaps.maps.services.Polyline
+import com.oldmaps.newmaps.maps.util.Constants.ACTION_PAUSE_SERVICE
+import com.oldmaps.newmaps.maps.util.Constants.ACTION_START_OR_RESUME_SERVICE
+import com.oldmaps.newmaps.maps.util.TrackingUtility
 
 
 @AndroidEntryPoint
@@ -43,6 +42,9 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
     private val viewModel: MapsMainViewModel by viewModels()
     private lateinit var binding: FragmentMapsMainBinding
     private var markerId: Int = 0
+    private val defaultLocation = LatLng(50.45466, 30.5238)
+
+    private var isPoint = mutableListOf<Polyline>()
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -65,20 +67,20 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMapsMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.map_view) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
+
+
+        binding.mapsMyOnLocation.setOnClickListener {
+            moveCameraToUser()
+        }
 
         if (!Places.isInitialized()) {
             Places.initialize(context, getString(R.string.google_api_key), Locale.US);
         }
 
-        initViewModelObserve()
 
 
         binding.mapsVintageMap.setOnClickListener {
@@ -87,8 +89,9 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
         binding.mapsSearch.setOnClickListener {
 
-            var fields=Arrays.asList(Place.Field.ID,Place.Field.NAME,Place.Field.LAT_LNG)
-            var intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(context)
+            var fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+            var intent =
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(context)
             activity?.startActivityForResult(intent, 1)
 
 
@@ -104,15 +107,17 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                 //update info markers
                 viewModel.getAllMarker()
             })
+
+
+        return binding.root
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap ?: return
+        subscribeToObserves()
 
-        val initStartPoint = LatLng(50.45466, 30.5238)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(initStartPoint))
-        googleMap.uiSettings.isRotateGesturesEnabled = false
-
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(defaultLocation))
 
         googleMap.setOnMapLongClickListener { latlng ->
             val bundle = Bundle()
@@ -134,7 +139,8 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
 
     }
 
-    private fun initViewModelObserve() {
+    @SuppressLint("MissingPermission")
+    private fun subscribeToObserves() {
         //set tile vintage map by local db
         viewModel.tileProvider.observe(viewLifecycleOwner, { tile ->
             tileOverlayTransparent =
@@ -170,11 +176,29 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
         })
 
         viewModel.showMarker.observe(viewLifecycleOwner, { visibility ->
-            when(visibility){
+            when (visibility) {
                 true -> viewModel.getAllMarker()
                 else -> map?.clear()
             }
 
+        })
+
+        //gps position
+        GpsService.isLocationOnOff.observe(viewLifecycleOwner, {
+            when (it) {
+                true -> {
+                    binding.mapsMyOnLocation.visibility = View.VISIBLE
+                    binding.mapsMyOffLocation.visibility = View.GONE
+                }
+                else -> {
+                    binding.mapsMyOnLocation.visibility = View.GONE
+                    binding.mapsMyOffLocation.visibility = View.VISIBLE
+                }
+            }
+        })
+
+        GpsService.isPoint.observe(viewLifecycleOwner, {
+            isPoint = it
         })
 
     }
@@ -224,5 +248,25 @@ class MapsMainFragment : Fragment(R.layout.fragment_maps_main), OnMapReadyCallba
                 )
         )
     }
+
+    @SuppressLint("MissingPermission")
+    private fun moveCameraToUser() {
+        if (map != null) {
+            if (isPoint.isNotEmpty() && isPoint.last().isNotEmpty()) {
+                map?.isMyLocationEnabled = true
+                map?.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        isPoint.last().last(),
+                        15f
+                    )
+                )
+            } else {
+                GpsService.isLocationOnOff.postValue(false)
+            }
+        }
+    }
+
 }
+
+
 

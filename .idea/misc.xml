@@ -7,6 +7,8 @@
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/disable_element_modern_map.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/ellipse.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/enable_element_modern_map.xml" value="0.24177631578947367" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/ic_icon_newar_me.xml" value="0.24177631578947367" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/ic_icon_newar_me_off.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/ic_menu_marker_map.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/line.xml" value="0.24177631578947367" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/drawable/modern_map_state_pressed.xml" value="0.24177631578947367" />
@@ -16,7 +18,7 @@
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/activity_main.xml" value="0.21345628415300547" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/bottom_sheet_add_marker.xml" value="0.25" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/bottom_sheet_list_vintage_map.xml" value="0.25" />
-        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/fragment_maps_main.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/fragment_maps_main.xml" value="0.22" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/fragment_marker_menu.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/header_navigation_menu.xml" value="0.11376858435681965" />
         <entry key="..\:/Users/Admin/Desktop/oldnewmap/app/src/main/res/layout/item_list_markers.xml" value="0.22" />

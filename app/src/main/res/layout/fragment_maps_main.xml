@@ -8,7 +8,7 @@
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
+        android:id="@+id/map_view"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,7 +61,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/maps_my_location"
+        android:id="@+id/maps_my_on_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -69,7 +69,23 @@
         android:background="@drawable/background_main_icon"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:src="@drawable/ic_icon_newar_me"
+        android:visibility="visible"
+        android:src="@drawable/ic_icon_newar_me_on"
+        app:layout_constraintBottom_toTopOf="@+id/sliderTransparency"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/maps_my_off_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_main_icon"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_icon_newar_me_off"
         app:layout_constraintBottom_toTopOf="@+id/sliderTransparency"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -85,7 +101,7 @@
         android:valueTo="100.0"
         android:visibility="gone"
         app:labelBehavior="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintBottom_toBottomOf="@+id/map_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:thumbColor="@color/white"

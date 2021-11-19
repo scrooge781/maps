@@ -105,6 +105,11 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.5.0'
 
 
+    // Easy Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+
+
     //Live data
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
 
